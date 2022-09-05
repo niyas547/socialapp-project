@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
-from api.serializers import PostSerializer
+from api.serializers import PostSerializer,UserSerializer
 from api.models import Posts
 
 # Create your views here.
@@ -32,6 +32,7 @@ class PostsView(ViewSet):
             serializer.save()
             return Response(data=serializer.data)
         else:
+
             return Response(data=serializer.errors)
 
     def destroy(self,request,*args,**kwargs):
@@ -39,5 +40,16 @@ class PostsView(ViewSet):
         qs=Posts.objects.get(id=id)
         qs.delete()
         return Response({"message":"post deleted"})
+
+
+class UsersView(ViewSet):
+    def create(self,request,*args,**kwargs):
+        serializer=UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(data=serializer.data)
+        else:
+            return Response(data=serializer.errors)
+
 
 
