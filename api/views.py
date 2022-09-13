@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.viewsets import ViewSet
+from rest_framework.viewsets import ViewSet,ModelViewSet
 from rest_framework.response import Response
 from api.serializers import PostSerializer,UserSerializer
 from api.models import Posts
@@ -57,4 +57,8 @@ class UsersView(ViewSet):
             return Response(data=serializer.errors)
 
 
-
+class PostModelView(ModelViewSet):
+    serializer_class = PostSerializer
+    queryset = Posts.objects.all()
+    authentication_classes =[authentication.TokenAuthentication]
+    permission_classes =[permissions.IsAuthenticated]

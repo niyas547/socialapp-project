@@ -19,7 +19,9 @@ from api import views
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import ObtainAuthToken
 router=DefaultRouter()
-router.register("posts",views.PostsView,basename="posts")
+
+router.register("api/v2/posts",views.PostModelView,basename="mposts")
+router.register("api/v1/posts",views.PostsView,basename="posts")
 router.register("accounts/signup",views.UsersView,basename="users")
 
 urlpatterns = [
