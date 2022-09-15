@@ -12,7 +12,7 @@ class Posts(models.Model):
     def __str__(self):
         return self.title
 
-class Coments(models.Model):
+class Comments(models.Model):
     post=models.ForeignKey(Posts,on_delete=models.CASCADE)
     comment=models.CharField(max_length=200)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
