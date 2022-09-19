@@ -11,7 +11,7 @@ from rest_framework.decorators import action
 
 class PostsView(ViewSet):
     # authentication_classes=[authentication.BasicAuthentication]
-    authentication_classes =[authentication.TokenAuthentication]
+    # authentication_classes =[authentication.TokenAuthentication]
     permission_classes =[permissions.IsAuthenticated]
     def list(self,request,*args,**kwargs):
         qs=Posts.objects.all()
@@ -61,7 +61,7 @@ class UsersView(ViewSet):
 class PostModelView(ModelViewSet):
     serializer_class = PostSerializer
     queryset = Posts.objects.all()
-    authentication_classes =[authentication.TokenAuthentication]
+    # authentication_classes =[authentication.TokenAuthentication]
     permission_classes =[permissions.IsAuthenticated]
 
     def create(self, request, *args, **kwargs):    #2

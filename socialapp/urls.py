@@ -18,6 +18,7 @@ from django.urls import path
 from api import views
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework_simplejwt.views import TokenRefreshView,TokenObtainPairView
 router=DefaultRouter()
 
 router.register("api/v2/posts",views.PostModelView,basename="mposts")
@@ -26,5 +27,6 @@ router.register("accounts/signup",views.UsersView,basename="users")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('token',ObtainAuthToken.as_view())
+    path('token',TokenObtainPairView.as_view()),        #obtaintokenview for tokenauth
+    path('token/refresh',TokenRefreshView.as_view())
 ]+router.urls
